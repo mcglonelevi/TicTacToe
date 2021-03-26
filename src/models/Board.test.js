@@ -7,6 +7,13 @@ describe('Board', () => {
             const board = new Board(moves);
             expect(board.moves).toEqual(moves);
         });
+
+        describe('when given invalid input', () => {
+            it('throws an error', () => {
+                const moves = [[1, 3], [0, 1]];
+                expect(() => new Board(moves)).toThrowError('Invalid move set provided.');
+            });
+        });
     });
 
     xdescribe('#getWinnerOrTie', () => {
