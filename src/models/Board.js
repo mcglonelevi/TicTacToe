@@ -1,7 +1,7 @@
 export default class Board {
     static PLAYERS = {
         FIRST_PLAYER: "X",
-        SECOND_PLAYER: "Y",
+        SECOND_PLAYER: "O",
     };
 
     static TIE_STATE = "TIE";
