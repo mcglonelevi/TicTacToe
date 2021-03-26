@@ -77,7 +77,11 @@ export default class Board {
     }
 
     _checkForWin(spots) {
-        // no win is possible if we have a null value
+        /**
+         * no win is possible if we have a null value
+         * we only have to check the first spot for the null value
+         * because of checking the equality of all three spots below
+         */ 
         if (spots[0] === null) {
             return false;
         }
