@@ -35,9 +35,16 @@ describe('Board', () => {
     });
    
     
-    xdescribe('#generateBoardArray', () => {
+    describe('#generateBoardArray', () => {
         it("returns correct multi-dimensional array given an array of coordinates", () => {
+            const moves = [[1, 2], [0, 1]];
+            const board = new Board(moves);
 
+            const boardArray = board.generateBoardArray();
+
+            expect(boardArray[0][0]).toBeNull(); // no move here, so null
+            expect(boardArray[1][2]).toEqual(Board.PLAYERS.FIRST_PLAYER); // no move here, so null
+            expect(boardArray[0][1]).toEqual(Board.PLAYERS.SECOND_PLAYER); // no move here, so null
         });
     });
 });
