@@ -16,21 +16,48 @@ describe('Board', () => {
         });
     });
 
-    xdescribe('#getWinnerOrTie', () => {
-        it("returns \"x\" in x win state", () => {
-
+    describe('#getWinnerOrTie', () => {
+        describe('horizontal win case', () => {
+            it("returns \"x\" in x win state", () => {
+                const moves = [[0, 0], [1, 0], [0, 1], [1, 1], [0, 2]];
+                const board = new Board(moves);
+                expect(board.getWinnerOrTie()).toEqual(Board.PLAYERS.FIRST_PLAYER);
+            });
         });
 
-        it("returns \"o\" in o win state", () => {
 
+        describe('vertical win case', () => {
+            it("returns \"o\" in o win state", () => {
+                const moves = [[0, 0], [0, 1], [1, 0], [1, 1], [2, 2], [2, 1]];
+                const board = new Board(moves);
+                expect(board.getWinnerOrTie()).toEqual(Board.PLAYERS.SECOND_PLAYER);
+            });
+        });
+
+        describe('diagonal win cases', () => {
+            it("returns expected winner in falling diagonal case", () => {
+                const moves = [[0, 0], [0, 1], [1, 1], [1, 2], [2, 2]];
+                const board = new Board(moves);
+                expect(board.getWinnerOrTie()).toEqual(Board.PLAYERS.FIRST_PLAYER);
+            });
+
+            it("returns expected winner in rising diagonal case", () => {
+                const moves = [[0, 2], [0, 1], [1, 1], [1, 2], [2, 0]];
+                const board = new Board(moves);
+                expect(board.getWinnerOrTie()).toEqual(Board.PLAYERS.FIRST_PLAYER);
+            });
         });
 
         it("returns \"tie\" in tie state", () => {
-
+            const moves = [[0, 0], [0, 2], [0, 1], [1, 0], [1, 2], [1, 1], [2, 0], [2, 2], [2, 1]];
+            const board = new Board(moves);
+            expect(board.getWinnerOrTie()).toEqual(Board.TIE_STATE);
         });
 
         it("returns null if no tie or winner", () => {
-
+            const moves = [[1, 2], [0, 1]];
+            const board = new Board(moves);
+            expect(board.getWinnerOrTie()).toBeNull();
         });
     });
    
