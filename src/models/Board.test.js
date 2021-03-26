@@ -74,4 +74,20 @@ describe('Board', () => {
             expect(boardArray[0][1]).toEqual(Board.PLAYERS.SECOND_PLAYER);
         });
     });
+
+    describe('.getPlayerForTurn', () => {
+        it("returns X player for odd numbered turns", () => {
+            expect(Board.getPlayerForTurn(1)).toEqual(Board.PLAYERS.FIRST_PLAYER);
+            expect(Board.getPlayerForTurn(3)).toEqual(Board.PLAYERS.FIRST_PLAYER);
+        });
+
+        it("returns O player for even numbered turns", () => {
+            expect(Board.getPlayerForTurn(2)).toEqual(Board.PLAYERS.SECOND_PLAYER);
+            expect(Board.getPlayerForTurn(4)).toEqual(Board.PLAYERS.SECOND_PLAYER);
+        });
+
+        it("returns null in case that all moves are exhausted", () => {
+            expect(Board.getPlayerForTurn(10)).toBeNull();
+        });
+    });
 });

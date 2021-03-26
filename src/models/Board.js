@@ -6,6 +6,13 @@ export default class Board {
 
     static TIE_STATE = "TIE";
 
+    static getPlayerForTurn = (turnNumber) => {
+        if (turnNumber > 9) {
+            return null;
+        }
+        return turnNumber % 2 === 1 ? Board.PLAYERS.FIRST_PLAYER : Board.PLAYERS.SECOND_PLAYER;
+    };
+
     static validateMoves(moves) {
         moves.forEach(([x, y]) => {
             if (x > 2 || y > 2) {
@@ -32,7 +39,7 @@ export default class Board {
         ];
 
         return this.moves.reduce((board, [x, y], currentIndex) => {
-            const player = currentIndex % 2 === 0 ? Board.PLAYERS.FIRST_PLAYER : Board.PLAYERS.SECOND_PLAYER;
+            const player = Board.getPlayerForTurn(currentIndex + 1);
             board[x][y] = player;
             return board;
         }, baseBoard);
