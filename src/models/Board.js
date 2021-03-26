@@ -4,6 +4,8 @@ export default class Board {
         SECOND_PLAYER: "Y",
     };
 
+    static TIE_STATE = "TIE";
+
     static validateMoves(moves) {
         moves.forEach(([x, y]) => {
             if (x > 2 || y > 2) {
@@ -34,5 +36,51 @@ export default class Board {
             board[x][y] = player;
             return board;
         }, baseBoard);
+    }
+
+    getWinnerOrTie() {
+        const board = this.generateBoardArray();
+
+        // check horizontal
+        for (let i = 0; i < 3; i++) {
+            const row = board[i];
+            if (this._checkForWin(row)) {
+                return row[0];
+            }
+        }
+
+        // check vertical
+        for (let i = 0; i < 3; i++) {
+            const column = [board[0][i], board[1][i], board[2][i]];
+            if (this._checkForWin(column)) {
+                return column[0];
+            }
+        }
+
+        // check diagonals
+        if (this._checkForWin([board[0][0], board[1][1], board[2][2]])) {
+            return board[0][0];
+        }
+
+        if (this._checkForWin([board[0][2], board[1][1], board[2][0]])) {
+            return board[0][2];
+        }
+
+        // tie case
+        const isTie = [...board[0], ...board[1], ...board[2]].every((value) => value != null);
+        if (isTie) {
+            return Board.TIE_STATE;
+        }
+
+        // default case
+        return null;
+    }
+
+    _checkForWin(spots) {
+        // no win is possible if we have a null value
+        if (spots[0] === null) {
+            return false;
+        }
+        return spots[0] === spots[1] && spots[1] === spots[2];
     }
 }
