@@ -1,9 +1,11 @@
 import Board from './Board';
 
 describe('Board', () => {
-    xdescribe('constructor', () => {
+    describe('constructor', () => {
         it('stores moves in class variable', () => {
-            
+            const moves = [[1, 2], [0, 1]];
+            const board = new Board(moves);
+            expect(board.moves).toEqual(moves);
         });
     });
 
