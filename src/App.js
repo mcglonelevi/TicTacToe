@@ -5,7 +5,7 @@ import Board from './components/Board';
 import PlayAgainModal from './components/PlayAgainModal';
 
 function App() {
-  const { board, move, nextTurn, reset, winnerOrTie } = useTicTacToe();
+  const { back, board, move, nextTurn, reset, winnerOrTie } = useTicTacToe();
 
   return (
     <div className="App">
@@ -22,6 +22,7 @@ function App() {
           resetBoard={reset}
         />
       </Board>
+      <button className="back-button" onClick={back}>Back</button>
     </div>
   );
 }
