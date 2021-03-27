@@ -19,7 +19,11 @@ function mountComponent() {
      * -----
      * 6|7|8
      */
-    const clickSpot = (index) => {
+    const clickBack = () => {
+        wrapper.find('.back-button').first().simulate('click');
+    };
+    
+     const clickSpot = (index) => {
         wrapper.find('.spot').at(index).simulate('click');
     };
 
@@ -33,6 +37,7 @@ function mountComponent() {
 
     return {
         wrapper,
+        clickBack,
         clickSpot,
         expectXTurn,
         expectOTurn,
@@ -76,6 +81,22 @@ describe('<App />', () => {
     
             expect(wrapper.find('h1').first().text()).toEqual('It is X\'s turn.');
             expect(wrapper.find('.play-again-modal').length).toEqual(0);
+        });
+    });
+
+    describe('back functionality', () => {
+        it('backs up a move', () => {
+            const { wrapper, clickBack, clickSpot, expectXTurn, expectOTurn } = mountComponent();
+
+            expectXTurn();
+
+            clickSpot(0);
+
+            expectOTurn();
+
+            clickBack();
+
+            expectXTurn();
         });
     });
 
