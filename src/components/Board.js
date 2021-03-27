@@ -1,6 +1,6 @@
 import Spot from './Spot';
 
-export default function Board({ board, move }) {
+export default function Board({ board, move, children }) {
     const rows = board.map((row, rowIndex) => {
         const spots = row.map((spotValue, columnIndex) => {
             return <Spot key={columnIndex} player={spotValue} onClick={() => move([rowIndex, columnIndex])} />;
@@ -15,7 +15,8 @@ export default function Board({ board, move }) {
 
     return (
         <div className="board">
-            {rows}  
+            {rows}
+            {children}
         </div>
     );
 }

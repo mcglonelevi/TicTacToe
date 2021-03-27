@@ -8,8 +8,12 @@ const DummyBoard = [
     [null, null, null],
 ];
 
-function mountComponent(move = () => {}) {
-    return mount(<Board board={DummyBoard} move={move} />);
+function mountComponent({ move = () => {}, children = null } = {}) {
+    return mount(
+        <Board board={DummyBoard} move={move}>
+            {children}
+        </Board>
+    );
 }
 
 describe('<Board />', () => {
@@ -17,6 +21,14 @@ describe('<Board />', () => {
         const wrapper = mountComponent();
 
         expect(wrapper.find(Spot).length).toEqual(9);
+    });
+
+    it('displays children', () => {
+        const wrapper = mountComponent({
+            children: <div id="test-component"></div>
+        });
+
+        expect(wrapper.find('#test-component').length).toEqual(1);
     });
 
     /**
@@ -42,7 +54,7 @@ describe('<Board />', () => {
     describe('when a spot is pressed with a null player', () => {
         it('calls the move function', () => {
             const move = jest.fn();
-            const wrapper = mountComponent(move);
+            const wrapper = mountComponent({ move });
 
             wrapper.find('.spot').first().simulate('click')
 
