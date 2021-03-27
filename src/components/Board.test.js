@@ -58,7 +58,11 @@ describe('<Board />', () => {
 
             wrapper.find('.spot').first().simulate('click')
 
-            expect(move).toHaveBeenCalled();
+            expect(move).toHaveBeenCalledWith([0, 0]);
+
+            wrapper.find('.spot').last().simulate('click')
+
+            expect(move).toHaveBeenCalledWith([2, 2]);
         });
     });
 });
