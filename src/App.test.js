@@ -77,10 +77,10 @@ describe('<App />', () => {
 
             expect(wrapper.find('h1').first().text()).toEqual('X won the game!');
     
-            wrapper.find('.play-again-modal').first().simulate('click');
+            wrapper.find('.play-again-overlay').first().simulate('click');
     
             expect(wrapper.find('h1').first().text()).toEqual('It is X\'s turn.');
-            expect(wrapper.find('.play-again-modal').length).toEqual(0);
+            expect(wrapper.find('.play-again-overlay').length).toEqual(0);
         });
     });
 

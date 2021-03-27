@@ -2,7 +2,7 @@ import './App.css';
 import useTicTacToe from './hooks/useTicTacToe';
 import Header from './components/Header';
 import Board from './components/Board';
-import PlayAgainModal from './components/PlayAgainModal';
+import PlayAgainOverlay from './components/PlayAgainOverlay';
 
 function App() {
   const { back, board, move, nextTurn, reset, winnerOrTie } = useTicTacToe();
@@ -17,7 +17,7 @@ function App() {
         board={board}
         move={move}
       >
-        <PlayAgainModal
+        <PlayAgainOverlay
           shouldDisplay={winnerOrTie !== null}
           resetBoard={reset}
         />

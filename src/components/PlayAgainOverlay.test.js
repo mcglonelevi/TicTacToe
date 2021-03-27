@@ -1,16 +1,16 @@
 import { mount } from 'enzyme';
-import PlayAgainModal from './PlayAgainModal';
+import PlayAgainOverlay from './PlayAgainOverlay';
 
 function mountComponent(shouldDisplay, resetBoard = () => {}) {
-    return mount(<PlayAgainModal shouldDisplay={shouldDisplay} resetBoard={resetBoard} />);
+    return mount(<PlayAgainOverlay shouldDisplay={shouldDisplay} resetBoard={resetBoard} />);
 }
 
-describe('<PlayAgainModal />', () => {
+describe('<PlayAgainOverlay />', () => {
     describe('when shouldDisplay is true', () => {
         it('displays the modal', () => {
             const wrapper = mountComponent(true);
 
-            expect(wrapper.find('.play-again-modal').length).toEqual(1);
+            expect(wrapper.find('.play-again-overlay').length).toEqual(1);
         });
 
         describe('when the modal is clicked', () => {
@@ -18,7 +18,7 @@ describe('<PlayAgainModal />', () => {
                 const resetBoard = jest.fn();
                 const wrapper = mountComponent(true, resetBoard);
 
-                wrapper.find('.play-again-modal').first().simulate('click');
+                wrapper.find('.play-again-overlay').first().simulate('click');
 
                 expect(resetBoard).toHaveBeenCalled();
             });
@@ -29,7 +29,7 @@ describe('<PlayAgainModal />', () => {
         it('does not display the modal', () => {
             const wrapper = mountComponent(false);
 
-            expect(wrapper.find('.play-again-modal').length).toEqual(0);
+            expect(wrapper.find('.play-again-overlay').length).toEqual(0);
         });
     });
 });
