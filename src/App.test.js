@@ -86,7 +86,7 @@ describe('<App />', () => {
 
     describe('back functionality', () => {
         it('backs up a move', () => {
-            const { wrapper, clickBack, clickSpot, expectXTurn, expectOTurn } = mountComponent();
+            const { clickBack, clickSpot, expectXTurn, expectOTurn } = mountComponent();
 
             expectXTurn();
 
