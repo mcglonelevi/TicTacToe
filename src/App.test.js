@@ -39,30 +39,49 @@ function mountComponent() {
     };
 }
 
+function playWinningGame() {
+    const { wrapper, clickSpot, expectXTurn, expectOTurn } = mountComponent();
+            
+    expectXTurn();
+
+    clickSpot(0);
+
+    expectOTurn();
+
+    clickSpot(1);
+
+    expectXTurn();
+
+    clickSpot(3);
+
+    expectOTurn();
+
+    clickSpot(4);
+
+    expectXTurn();
+
+    clickSpot(6);
+
+    return wrapper;
+}
+
 describe('<App />', () => {
+    describe('reset functionality', () => {
+        it('resets', () => {
+            const wrapper = playWinningGame();
+
+            expect(wrapper.find('h1').first().text()).toEqual('X won the game!');
+    
+            wrapper.find('.play-again-modal').first().simulate('click');
+    
+            expect(wrapper.find('h1').first().text()).toEqual('It is X\'s turn.');
+            expect(wrapper.find('.play-again-modal').length).toEqual(0);
+        });
+    });
+
     describe('when a game with a winner is played', () => {
         it('shows valid feedback to the user with winning text at the end of the game', () => {
-            const { wrapper, clickSpot, expectXTurn, expectOTurn } = mountComponent();
-            
-            expectXTurn();
-
-            clickSpot(0);
-
-            expectOTurn();
-
-            clickSpot(1);
-
-            expectXTurn();
-
-            clickSpot(3);
-
-            expectOTurn();
-
-            clickSpot(4);
-
-            expectXTurn();
-
-            clickSpot(6);
+            const wrapper = playWinningGame();
 
             expect(wrapper.find('h1').first().text()).toEqual('X won the game!');
         });

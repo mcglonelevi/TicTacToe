@@ -5,7 +5,7 @@ export default function PlayAgainModal({ shouldDisplay, resetBoard }) {
 
     return (
         <div className="play-again-modal" onClick={resetBoard}>
-            <h2>Play Again?</h2>
+            <h2>Click here to play again!</h2>
         </div>
     );
 }

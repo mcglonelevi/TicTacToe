@@ -22,6 +22,7 @@
 }
 
 .board {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,4 +36,21 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.play-again-modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.play-again-modal > h2 {
+  color: white;
+  display: inline;
 }
