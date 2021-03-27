@@ -1,0 +1,38 @@
+:root {
+  --tile-size: 100px;
+  --gap-size: 10px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spot {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  background-color: white;
+}
+
+.spot > img {
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(var(--tile-size) * 3 + var(--gap-size) * 2);
+  height: calc(var(--tile-size) * 3 + var(--gap-size) * 2);
+  background-color: black;
+}
+
+.row {
+  height: var(--tile-size);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
